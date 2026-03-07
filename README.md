@@ -1,4 +1,4 @@
-# 🕷️ Cuadrúpedo DE VEGETTA 777 - Proyecto TECNM
+# 🕷️ Quadrupedal spider-bot - Proyecto TECNM
 **Desarrollo de un robot cuadrúpedo basado en ESP32 con Cinematica Inversa y control PWM.**
 
 ---
