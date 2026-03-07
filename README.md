@@ -1,69 +1,53 @@
-# 🤖 IngDash: Collaborative Dashboard
+# 🕷️ Cuadrúpedo Robótico - Proyecto Innovabots
+**Desarrollo de un robot cuadrúpedo basado en ESP32 con Cinematica Inversa y control PWM.**
 
-Bienvenido al taller de **Git & GitHub** febrero 2026. El objetivo de este proyecto es construir un panel de control colaborativo donde cada integrante registre su propio "módulo" de trabajo.
+---
 
-## Requisitos
+## 📝 Descripción
+Este proyecto consiste en el diseño, impresión 3D y programación de un robot cuadrúpedo (comúnmente llamado "araña"). Utiliza un microcontrolador **ESP32** para procesar la lógica de movimiento y un controlador **PCA9685** para gestionar 12 servos **MG90S**.
 
-- Tener instalado [Git](https://git-scm.com/).
-- Una cuenta activa en [GitHub](https://github.com/).
-- VS Code (recomendado).
+El robot es capaz de realizar movimientos fluidos gracias a la implementación de **Cinemática Inversa (IK)**, permitiendo el control mediante coordenadas cartesianas $(X, Y, Z)$.
 
-## Instrucciones de la Práctica
+## 🚀 Características Técnicas
+*   **Cerebro:** ESP32 CH340 Lolin (Wi-Fi/Bluetooth).
+*   **Control de Motores:** PCA9685 de 16 canales vía I2C.
+*   **Actuadores:** 12x Servos TowerPro MG90S.
+*   **Alimentación:** Batería LiPo 7.4V con reguladores Step-Down (MP1584) y Step-Up (XL6009).
+*   **Lenguaje:** Python (MicroPython) / C++ (Arduino IDE).
 
-### 1. Clonar el repositorio
+## 📐 Dimensiones y Diseño
+El diseño fue optimizado para impresión en 3D con las siguientes medidas de eslabones:
+- **Coxa (L1):** 55.0 mm
+- **Fémur (L2):** 77.5 mm
+- **Tibia (L3):** 27.5 mm
 
-Primero, obtén la base del proyecto y desconéctala de mi repositorio. Abre tu terminal y ejecuta:
+## 🔌 Diagrama de Conexión
+El sistema utiliza un bus I2C para la comunicación entre el ESP32 y el controlador de servos:
+- **SDA:** Pin 4
+- **SCL:** Pin 5
 
-```bash
-git clone https://github.com/JosephAntonyDev/collab-dashboard-course.git
-cd collab-dashboard-course
-git remote remove origin
-```
+> [!TIP]
+> Asegúrate de ajustar el regulador de voltaje a **6V** para los servos para evitar daños y maximizar el torque.
 
-### 2. Crear tu propio repositorio en GitHub
+## 💻 Instalación y Uso
 
-- Ve a GitHub y crea un nuevo repositorio llamado `my-first-dashboard`.
-- Vincula tu carpeta local con tu nuevo repo:
+1.  **Clonar el repositorio:**
+    ```bash
+    git clone [https://github.com/tu-usuario/nombre-del-repo.git](https://github.com/tu-usuario/nombre-del-repo.git)
+    ```
+2.  **Cargar MicroPython:** Asegúrate de tener el firmware de MicroPython en tu ESP32.
+3.  **Subir librerías:** Sube el archivo `pca9685.py` a la raíz del ESP32.
+4.  **Ejecutar:** Carga `main.py` para iniciar la secuencia de caminado.
 
-```bash
-git remote add origin https://github.com/TU_USUARIO/my-first-dashboard.git
-git branch -M main
-git push -u origin main
-```
+## 🛠️ Roadmap (Próximas Mejoras)
+- [ ] Integración de sensores ultrasónicos para evasión de obstáculos.
+- [ ] Control remoto vía App móvil mediante Bluetooth.
+- [ ] Implementación de marcha dinámica (Gait control) avanzada.
+- [ ] Reconocimiento visual con cámara ESP32-CAM.
 
-### 3. Crear una rama (Feature Branch)
+## 🤝 Contribuciones
+¡Las contribuciones son bienvenidas! Si tienes ideas para mejorar la cinemática o el diseño 3D, siéntete libre de abrir un *Pull Request*.
 
-No trabajes en `main`. Crea una rama con tu nombre:
-
-```bash
-git checkout -b feature/nombre-apellido
-```
-
-### 4. Editar el código
-
-- Abre `index.html`.
-- Busca la sección `<main class="dashboard-container">`.
-- Copia el bloque de la card de ejemplo y pega el tuyo debajo.
-- Cambia el emoji, tu nombre y el porcentaje de la barra de progreso.
-
-Ejemplo:
-
-```html
-<div class="card">
-    <div class="icon">🚀</div>
-    <h3>Diseño</h3>
-    <p><strong>Responsable:</strong> Alejandro Ismael</p>
-    <p><strong>Estatus:</strong> Durmiendo</p>
-    <div class="bar">
-        <div class="progress" style="width: 95%;"></div>
-    </div>
-</div>
-```
-
-### 5. Guardar y subir los cambios
-
-```bash
-git add .
-git commit -m "feat: add my dashboard card"
-git push origin feature/nombre-apellido
-```
+---
+**Desarrollado por Abi - Mecatrónica TecNM**  
+*Impulsando la robótica *
