@@ -1,0 +1,93 @@
+import math
+import time
+#from machine import I2C, Pin
+# Nota: Necesitas subir el archivo pca9685.py a tu ESP32
+#from pca9685 import PCA9685 
+
+class InnovabotControl:
+    def __init__(self):
+        # 1. Configuración de Hardware (según tu diagrama)
+ #       self.i2c = I2C(0, sda=Pin(4), scl=Pin(5))
+  #
+  # self.pca = PCA9685(self.i2c)
+        self.pca.freq(60) # Frecuencia de 60Hz como en tu C++
+        
+        # 2. Dimensiones del Robot (mm)
+        self.L1, self.L2, self.L3 = 55.0, 77.5, 27.5
+        self.length_side = 71.0
+        
+        # 3. Constantes de Movimiento
+        self.z_default, self.z_up = -50.0, -30.0
+        self.z_boot = -28.0
+        self.x_default = 62.0
+        self.y_start, self.y_step = 0.0, 40.0
+        
+        # 4. Estado y Pines (Coincide con tu matriz servo_pin)
+        self.pins = [[0, 1, 2], [4, 5, 6], [8, 9, 10], [12, 13, 14]]
+        self.site_now = [[self.x_default, self.x_default, self.z_boot] for _ in range(4)]
+        self.site_expect = [[self.x_default, self.x_default, self.z_boot] for _ in range(4)]
+        
+        # Ajustes de PWM para MG90s (0° a 180°)
+        self.pwm_min, self.pwm_max = 150, 600 
+
+    def inverse_kinematics(self, x, y, z):
+        """Convierte coordenadas XYZ en ángulos de servo"""
+        # Ecuaciones para patas tipo araña
+        theta_base = math.atan2(y, x)
+        r = math.sqrt(x**2 + y**2) - self.L1
+        d = math.sqrt(r**2 + z**2)
+        
+        # Ley de Cosenos
+        try:
+            alpha = math.acos((self.L2**2 + d**2 - self.L3**2) / (2 * self.L2 * d))
+            beta = math.atan2(z, r)
+            gamma = math.acos((self.L2**2 + self.L3**2 - d**2) / (2 * self.L2 * self.L3))
+            
+            # Ángulos finales en grados
+            angle_base = math.degrees(theta_base) + 90
+            angle_femur = math.degrees(alpha + beta) + 90
+            angle_tibia = math.degrees(gamma)
+            return angle_base, angle_femur, angle_tibia
+        except ValueError:
+            return None # Fuera de rango
+
+    def move_servo(self, leg, angles):
+        """Envía los ángulos al PCA9685"""
+        if angles is None: return
+        # Limita los ángulos al rango 0-180 para evitar daños en servos
+        angles = [max(0, min(180, a)) for a in angles]
+        for i in range(3):
+            # Mapeo simple de grados a pulso PWM
+            pulse = int(self.pwm_min + (angles[i] * (self.pwm_max - self.pwm_min) / 180))
+            self.pca.pwm(self.pins[leg][i], 0, pulse)
+
+    def set_site(self, leg, x, y, z):
+        """Actualiza el destino y mueve la pata"""
+        self.site_expect[leg] = [x, y, z]
+        angles = self.inverse_kinematics(x, y, z)
+        self.move_servo(leg, angles)
+        self.site_now[leg] = [x, y, z]
+
+    def stand(self):
+        """Secuencia para ponerse de pie"""
+        print("Innovabot poniéndose de pie...")
+        for i in range(4):
+            self.set_site(i, self.x_default, self.x_default, self.z_default)
+
+    def sit(self):
+        """Secuencia para sentarse"""
+        print("Innovabot sentándose...")
+        for i in range(4):
+            self.set_site(i, self.x_default, self.x_default, self.z_boot)
+
+# --- Ejecución Principal ---
+robot = InnovabotControl()
+
+try:
+    while True:
+        robot.stand()
+        time.sleep(2)
+        robot.sit()
+        time.sleep(2)
+except KeyboardInterrupt:
+    print("Detenido por el usuario")
