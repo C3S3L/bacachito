@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto Araña | Innovabots</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body { background-color: #0f172a; color: #f8fafc; }
+        .tech-gradient { background: linear-gradient(90deg, #3b82f6 0%, #2dd4bf 100%); }
+        .card-dark { background: #1e293b; border: 1px solid #334155; }
+    </style>
+</head>
+<body class="font-sans">
+
+    <!-- Hero Section -->
+    <header class="py-20 px-6 text-center">
+        <h1 class="text-5xl md:text-7xl font-extrabold mb-4 tech-gradient bg-clip-text text-transparent">
+            VALIENDO VERGITAS 777
+        </h1>
+        <p class="text-xl text-slate-400 max-w-2xl mx-auto">
+            Robot cuadrúpedo de alta precisión basado en ESP32, diseñado para exploración y cinemática avanzada.
+        </p>
+        <div class="mt-8">
+            <span class="bg-blue-500/10 text-blue-400 px-4 py-2 rounded-full border border-blue-500/20">Mecatrónica TecNM</span>
+        </div>
+    </header>
+
+    <!-- Galería de Fotos (Aquí van tus fotos) -->
+    <section class="max-w-6xl mx-auto px-6 py-12">
+        <h2 class="text-3xl font-bold mb-8 flex items-center">
+            <i class="fas fa-camera-retro mr-3 text-teal-400"></i> Galería del Proyecto
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Foto 1: El ensamble -->
+            <div class="card-dark rounded-xl overflow-hidden shadow-xl hover:scale-105 transition-transform">
+                <img src="fotos.jpeg" alt="Ensamble inicial" class="w-full h-64 object-cover opacity-80 hover:opacity-100">
+                <div class="p-4">
+                    <h3 class="font-bold">Estructura Impresa</h3>
+                    <p class="text-sm text-slate-400">Chasis reforzado con diseño hexagonal.</p>
+                </div>
+            </div>
+            <!-- Foto 2: Electrónica -->
+            <div class="card-dark rounded-xl overflow-hidden shadow-xl hover:scale-105 transition-transform">
+                <img src="fotos araña.jpeg" alt="Circuito PCA9685" class="w-full h-64 object-cover opacity-80">
+                <div class="p-4">
+                    <h3 class="font-bold">Control de Potencia</h3>
+                    <p class="text-sm text-slate-400">Manejo de 12 servos MG90S con PCA9685.</p>
+                </div>
+            </div>
+            <!-- Foto 3: Diagrama -->
+            <div class="card-dark rounded-xl overflow-hidden shadow-xl hover:scale-105 transition-transform">
+                <img src="diagrama de circuitos .jpeg" alt="Diagrama de conexiones" class="w-full h-64 object-cover opacity-80">
+                <div class="p-4">
+                    <h3 class="font-bold">Esquemático</h3>
+                    <p class="text-sm text-slate-400">Conexiones I2C y sistema de alimentación dual.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Especificaciones Técnicas -->
+    <section class="max-w-4xl mx-auto px-6 py-12 border-t border-slate-800">
+        <div class="grid md:grid-cols-2 gap-12">
+            <div>
+                <h2 class="text-3xl font-bold mb-6 text-teal-400">Hardware</h2>
+                <ul class="space-y-4">
+                    <li class="flex items-center"><i class="fas fa-microchip mr-3"></i> ESP32 Lolin CH340</li>
+                    <li class="flex items-center"><i class="fas fa-bolt mr-3"></i> Batería LiPo 7.4V + Buck/Boost</li>
+                    <li class="flex items-center"><i class="fas fa-cogs mr-3"></i> 12x Servos TowerPro MG90S</li>
+                    <li class="flex items-center"><i class="fas fa-print mr-3"></i> Piezas en PLA / PETG</li>
+                </ul>
+            </div>
+            <div>
+                <h2 class="text-3xl font-bold mb-6 text-blue-400">Software</h2>
+                <ul class="space-y-4 text-slate-300">
+                    <li>• Algoritmo de Cinemática Inversa (IK).</li>
+                    <li>• Programación en Python (MicroPython).</li>
+                    <li>• Control de frecuencia PWM a 60Hz.</li>
+                    <li>• Estructura modular para fácil expansión.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 text-center text-slate-500 border-t border-slate-800">
+        <p>Proyecto desarrollado por <strong>Abi, cejitassexo, damm, moty</strong></p>
+        <p class="text-sm">TECNM - 2026</p>
+        <div class="mt-4 space-x-4">
+            <a href="#" class="hover:text-teal-400"><i class="fab fa-github fa-lg"></i></a>
+            <a href="#" class="hover:text-teal-400"><i class="fab fa-linkedin fa-lg"></i></a>
+
+        
+        </div>
+    
+    </footer>
+
+</body>
+</html>
