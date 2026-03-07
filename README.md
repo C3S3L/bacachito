@@ -1,4 +1,4 @@
-# 🕷️ Cuadrúpedo Robótico - Proyecto Innovabots
+# 🕷️ Cuadrúpedo DE VEGETTA 777 - Proyecto TECNM
 **Desarrollo de un robot cuadrúpedo basado en ESP32 con Cinematica Inversa y control PWM.**
 
 ---
