@@ -49,5 +49,5 @@ El sistema utiliza un bus I2C para la comunicación entre el ESP32 y el controla
 ¡Las contribuciones son bienvenidas! Si tienes ideas para mejorar la cinemática o el diseño 3D, siéntete libre de abrir un *Pull Request*.
 
 ---
-**Desarrollado por Abi, cejitascexo, damm, moty - Mecatrónica TecNM**  
+**Desarrollado por Ceja Selvas Juan Emilio, Abinadab Penagos, Emanuel Urbina, Damarik Eliseo - Mecatrónica TecNM**  
 *Impulsando la robótica *
